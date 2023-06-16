@@ -4,7 +4,7 @@ export type FilterOptionIdType = string;
 
 export type FilterCategoryOptionType = {
   optionId: FilterOptionIdType;
-  title?: string;
+  title: string;
 };
 
 export type FilterTypes = "radio" | "multi-select" | "range" | "input";
@@ -24,6 +24,11 @@ export type MultiSelectFilterCategoryType = BaseFilterCategoryType & {
   ui?: {
     filterable?: boolean;
     columns?: number;
+    showAll?: {
+      threshold: number;
+      showAlltext: string;
+      hideText: string;
+    };
   };
   renderItem?: (
     optionId: FilterOptionIdType,

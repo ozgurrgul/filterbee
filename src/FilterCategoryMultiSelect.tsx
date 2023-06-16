@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MultiSelectProps } from "./FilterCategoryRenderer";
 import { Input } from "./components/Input";
 import { Checkbox } from "./components/Checkbox";
+import { FilterCategoryOptionType } from "./types";
 
 export const FilterCategoryMultiSelect: MultiSelectProps = ({
   category,
@@ -20,13 +21,27 @@ export const FilterCategoryMultiSelect: MultiSelectProps = ({
   const isFilterable = Boolean(category.ui?.filterable);
   const columnCount = category.ui?.columns || 1;
 
-  const getFilteredOptions = () => {
-    if (!filterText) {
-      return category.options;
+  const [isShowAll, setShowAll] = useState(false);
+  const hasShowAllConfigured =
+    category.ui?.showAll && category.ui?.showAll.threshold;
+
+  const takeWithThreshold = (options: FilterCategoryOptionType[]) => {
+    if (category.ui?.showAll && !isShowAll) {
+      return options.slice(0, category.ui.showAll.threshold);
     }
 
-    return category.options.filter((option) =>
-      option.title?.toLowerCase().includes(filterText.toLowerCase())
+    return options;
+  };
+
+  const getFilteredOptions = () => {
+    if (!filterText) {
+      return takeWithThreshold(category.options);
+    }
+
+    return takeWithThreshold(
+      category.options.filter((option) =>
+        option.title?.toLowerCase().includes(filterText.toLowerCase())
+      )
     );
   };
 
@@ -79,11 +94,21 @@ export const FilterCategoryMultiSelect: MultiSelectProps = ({
                 htmlFor={optionIdString}
                 className="text-sm leading-none peer-disabled:cursor-not-allowed w-full"
               >
-                {title}
+                {title || optionId}
               </label>
             </div>
           );
         })}
+        {hasShowAllConfigured && (
+          <div
+            className="cursor-pointer text-slate-700"
+            onClick={() => setShowAll(!isShowAll)}
+          >
+            {isShowAll
+              ? category.ui?.showAll?.hideText
+              : category.ui?.showAll?.showAlltext}
+          </div>
+        )}
       </div>
     </div>
   );

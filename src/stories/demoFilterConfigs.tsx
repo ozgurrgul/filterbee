@@ -44,6 +44,12 @@ export const deskPriceFilter: FilterCategoryType = {
 export const deskStyleFilter: FilterCategoryType = {
   title: "Desk style",
   type: "multi-select",
+  ui: {
+    showAll: {
+      text: "Show more",
+      threshold: 3,
+    },
+  },
   options: [
     {
       title: "Country Rustic",
@@ -65,6 +71,26 @@ export const deskStyleFilter: FilterCategoryType = {
       title: "Retro",
       optionId: "Retro",
     },
+    {
+      title: "Minimalist",
+      optionId: "Minimalist",
+    },
+    {
+      title: "Hollywood legacy",
+      optionId: "Hollywood legacy",
+    },
+    {
+      title: "Lodge",
+      optionId: "Lodge",
+    },
+    {
+      title: "Shaker",
+      optionId: "Shaker",
+    },
+    {
+      title: "Victorian",
+      optionId: "Victorian",
+    },
   ],
 };
 
@@ -72,6 +98,10 @@ export const deskConditionFilter: FilterCategoryType = {
   title: "Desk condition",
   type: "radio",
   options: [
+    {
+      title: "All",
+      optionId: "All",
+    },
     {
       title: "Used",
       optionId: "Used",

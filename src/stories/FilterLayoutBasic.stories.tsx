@@ -15,7 +15,7 @@ import {
 } from "./demoFilterConfigs";
 
 const meta: Meta = {
-  title: "FilterLayout",
+  title: "FilterLayout/Basic",
   component: FilterLayout,
   parameters: {
     layout: "fullscreen",
@@ -32,11 +32,21 @@ type MyFilters =
   | "desk-color"
   | "custom-search";
 
+const categories: FilterCategoriesType<MyFilters> = {
+  "desk-brand": deskBrandFilter,
+  "desk-price": deskPriceFilter,
+  "desk-style": deskStyleFilter,
+  "desk-condition": deskConditionFilter,
+  "desk-color": deskColorFilter,
+  "custom-search": customSearchFilter,
+};
+
 const Template: Story = (args) => {
   const [appliedFilters, setAppliedFilters] = useState<
     Partial<AppliedFiltersType<MyFilters>>
   >({
     "desk-brand": ["Vasagle"],
+    "desk-condition": "All",
   });
 
   const handleFilterChange = (
@@ -46,15 +56,6 @@ const Template: Story = (args) => {
     setAppliedFilters(newFilters);
   };
 
-  const categories: FilterCategoriesType<MyFilters> = {
-    "desk-brand": deskBrandFilter,
-    "desk-price": deskPriceFilter,
-    "desk-style": deskStyleFilter,
-    "desk-condition": deskConditionFilter,
-    "desk-color": deskColorFilter,
-    "custom-search": customSearchFilter,
-  };
-
   return (
     <FilterLayoutContextProvider appliedFilters={appliedFilters}>
       <FilterLayout<MyFilters>
@@ -62,14 +63,12 @@ const Template: Story = (args) => {
         onChange={handleFilterChange}
         categories={categories}
       >
-        <div>Child</div>
+        <pre className="p-4">{JSON.stringify(appliedFilters, null, 4)}</pre>
       </FilterLayout>
     </FilterLayoutContextProvider>
   );
 };
 
-export const Default = Template.bind({});
+export const Basic = Template.bind({});
 
-Default.args = {
-  appliedFilters: {},
-};
+Basic.args = {};

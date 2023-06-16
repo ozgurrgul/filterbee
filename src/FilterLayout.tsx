@@ -28,12 +28,14 @@ export const FilterLayout = <T extends string>({
   header,
 }: FilterLayoutProps<T>) => {
   const { temporarilyAppliedFilters } = useContext(FilterLayoutContext);
-  const [showSheet, setShowSheet] = React.useState(false);
+  const [isShowSheet, setShowSheet] = React.useState(false);
+
+  const hideSheet = () => setShowSheet(false);
 
   return (
     <div>
       <div
-        className={`filter-layout-container flex flex-col lg:grid bg-zinc-50`}
+        className={`filterbee-filter-layout flex flex-col lg:grid bg-zinc-50`}
         style={{
           height: "100vh",
           overflowY: "hidden",
@@ -48,43 +50,32 @@ export const FilterLayout = <T extends string>({
           </Button>
         </div>
 
-        {showSheet && (
+        {isShowSheet && (
           <FilterLayoutMobile
             filtersContainer={<FiltersContainer<T> categories={categories} />}
             applyFiltersButton={
               <ApplyFiltersButtonMobile
-                onClick={() => {
+                onApplylick={() => {
                   if (onChange) {
                     onChange(temporarilyAppliedFilters);
+                    hideSheet();
                   }
                 }}
+                onCancelClick={hideSheet}
               />
             }
-            onOpenChange={() => setShowSheet(false)}
+            onOpenChange={hideSheet}
           />
         )}
 
         {/* Tablet and over filter menu on left */}
-        <div
-          className={cn(
-            "filters-container relative border-r border-b-0 hidden lg:flex align-items bg-white pb-24"
-          )}
-          style={{
-            overflowY: "hidden",
-          }}
-        >
-          <div
-            style={{
-              height: "100%",
-              overflowY: "auto",
-            }}
-            className="w-full"
-          >
+        <div className="relative border-r border-b-0 hidden lg:flex align-items bg-white pb-16 overflow-y-hidden">
+          <div className="w-full overflow-y-auto h-full">
             <FiltersContainer<T>
               categories={categories}
               applyFiltersButton={
                 <ApplyFiltersButtonDesktop
-                  onClick={() => {
+                  onApplylick={() => {
                     if (onChange) {
                       onChange(temporarilyAppliedFilters);
                     }

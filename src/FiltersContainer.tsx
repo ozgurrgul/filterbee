@@ -102,7 +102,7 @@ export const FiltersContainer = <T extends string>({
   };
 
   return (
-    <>
+    <div className="filterbee-filters-container">
       <Accordion
         type="multiple"
         className="w-full"
@@ -134,6 +134,6 @@ export const FiltersContainer = <T extends string>({
         ))}
       </Accordion>
       {applyFiltersButton}
-    </>
+    </div>
   );
 };

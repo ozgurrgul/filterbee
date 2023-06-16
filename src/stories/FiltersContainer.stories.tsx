@@ -54,9 +54,15 @@ const Template: Story = (args) => {
   };
 
   return (
-    <FilterLayoutContextProvider>
-      <FiltersContainer categories={categories} onChange={handleFilterChange} />
-    </FilterLayoutContextProvider>
+    <div className="grid grid-cols-3">
+      <FilterLayoutContextProvider>
+        <FiltersContainer
+          categories={categories}
+          onChange={handleFilterChange}
+        />
+      </FilterLayoutContextProvider>
+      <pre className="p-4">{JSON.stringify(appliedFilters, null, 4)}</pre>
+    </div>
   );
 };
 
