@@ -67,7 +67,7 @@ export const FilterLayout = <T extends string>({
         {/* Tablet and over filter menu on left */}
         <div
           className={cn(
-            "filters-container relative border-r border-b-0 hidden lg:flex align-items bg-white pb-16 "
+            "filters-container relative border-r border-b-0 hidden lg:flex align-items bg-white pb-24"
           )}
           style={{
             overflowY: "hidden",

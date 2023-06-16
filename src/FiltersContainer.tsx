@@ -101,9 +101,6 @@ export const FiltersContainer = <T extends string>({
     }
   };
 
-  const isLastItem = (index: number) =>
-    Object.keys(categories).length === index + 1;
-
   return (
     <>
       <Accordion
@@ -114,13 +111,13 @@ export const FiltersContainer = <T extends string>({
         {Object.keys(categories).map((filterId, i) => (
           <AccordionItem value={filterId} key={filterId}>
             <AccordionTrigger>
-              <div className="p-4">
+              <div className="p-4 pb-0 pt-0">
                 <div className="text-md lg:text-lg font-semibold text-left">
                   {categories[filterId as T].title}
                 </div>
               </div>
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="pt-1">
               <FilterCategoryRenderer
                 category={categories[filterId as T]}
                 onChange={({ optionId, value }) =>
@@ -132,7 +129,6 @@ export const FiltersContainer = <T extends string>({
                 }
                 appliedFilters={temporarilyAppliedFilters[filterId as T]}
               />
-              {/* {!isLastItem(i) && <Separator />} */}
             </AccordionContent>
           </AccordionItem>
         ))}

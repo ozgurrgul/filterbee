@@ -11,7 +11,7 @@ export const FilterCategoryRadio: RadioProps = ({
 }) => {
   const value = appliedFilters as SingleAppliedFilterIdValue;
   return (
-    <div className="p-4 pt-0 mb-4">
+    <div className="p-4 pt-0">
       <RadioGroup
         value={String(value)}
         onValueChange={(value) =>

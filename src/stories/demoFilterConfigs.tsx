@@ -1,4 +1,5 @@
 import { FilterCategoryType } from "../types";
+import { cn } from "../utils/cn";
 
 export const deskBrandFilter: FilterCategoryType = {
   title: "Brand",
@@ -86,14 +87,21 @@ export const deskColorFilter: FilterCategoryType = {
   title: "Color",
   type: "multi-select",
   renderItem: (optionId, isChecked) => {
+    const colorMap: { [optionId: string]: string } = {
+      black: "bg-black",
+      red: "bg-red-400",
+      yellow: "bg-orange-400",
+      blue: "bg-blue-400",
+      green: "bg-green-400",
+    };
     return (
       <span
-        className="rounded-full w-5 h-5 inline-block border cursor-pointer"
-        style={{
-          backgroundColor: optionId,
-          borderColor: isChecked ? "black" : "transparent",
-          borderWidth: 2,
-        }}
+        className={cn(
+          "rounded-full w-5 h-5 inline-block cursor-pointer border-2",
+          isChecked && "border-zinc-600",
+          !isChecked && "border-transparent",
+          colorMap[optionId]
+        )}
       >
         &nbsp;
       </span>

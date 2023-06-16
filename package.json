@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup && npm run build-css",
-    "build-css": "npx tailwindcss -i ./src/main.css -o ./dist/style.css",
+    "build-css": "npx tailwindcss -i ./src/main.css -o ./dist/style.css --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

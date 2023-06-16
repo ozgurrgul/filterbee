@@ -1,4 +1,3 @@
-import { Button } from "./components/Button";
 import {
   SheetContent,
   SheetFooter,
@@ -20,10 +19,10 @@ export const FilterLayoutMobile: React.FC<FilterLayoutMobileProps> = ({
   <>
     <Sheet open onOpenChange={onOpenChange}>
       <SheetContent position="bottom" size="content" className="p-0">
-        <div className="overflow-auto max-h-[540px] mb-8">
+        <div className="p-4 border border-b text-xl font-bold">Filters</div>
+        <div className="overflow-auto mb-8 max-h-[540px]">
           {filtersContainer}
         </div>
-        <Button>clos</Button>
         <SheetFooter>
           <SheetClose asChild>{applyFiltersButton}</SheetClose>
         </SheetFooter>
