@@ -10,7 +10,7 @@ export const FilterCategoryInput: InputProps = ({
   appliedFilters,
   onChange,
 }) => {
-  const [value, setValue] = useState(String(appliedFilters));
+  const [value, setValue] = useState(String(appliedFilters || ''));
 
   const updateValue = (value: string) => {
     setValue(value);

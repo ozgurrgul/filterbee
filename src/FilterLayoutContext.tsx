@@ -20,13 +20,14 @@ export const FilterLayoutContext = createContext<FilterLayoutContextType>({
 
 type FilterLayoutContextProviderProps = {
   children: any;
+  appliedFilters?: State["temporarilyAppliedFilters"];
 };
 
 export const FilterLayoutContextProvider: React.FC<
   FilterLayoutContextProviderProps
-> = ({ children }) => {
+> = ({ children, appliedFilters }) => {
   const [state, dispatch] = useReducer(filterLayoutReducer, {
-    temporarilyAppliedFilters: {},
+    temporarilyAppliedFilters: appliedFilters || {},
   });
 
   const value: FilterLayoutContextType = {

@@ -81,9 +81,6 @@ export const FilterCategoryRenderer: React.FC<FilterCategoryRendererProps> = ({
   const Category = CATEGORY_RENDERER_MAP[category.type];
   return (
     <>
-      <div className="p-4">
-        <div className="text-md lg:text-lg font-semibold">{category.title}</div>
-      </div>
       {Category ? (
         <Category
           // @ts-ignore

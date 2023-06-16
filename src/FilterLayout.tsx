@@ -14,7 +14,6 @@ import { cn } from "./utils/cn";
 
 type FilterLayoutProps<T extends string> = {
   categories: FilterCategoriesType<T>;
-  appliedFilters: Partial<AppliedFiltersType<T>>;
   onChange?: (newFilters: Partial<AppliedFiltersType<T>>) => void;
   children: any;
   header?: {
@@ -79,6 +78,7 @@ export const FilterLayout = <T extends string>({
               height: "100%",
               overflowY: "auto",
             }}
+            className="w-full"
           >
             <FiltersContainer<T>
               categories={categories}

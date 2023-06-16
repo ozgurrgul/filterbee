@@ -12,11 +12,17 @@ import {
   FilterTypes,
 } from "./types";
 import { FilterLayoutContext } from "./FilterLayoutContext";
-import { Separator } from "./components/Separator";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./components/Accordion";
 
 type FiltersContainerProps<T extends string> = {
   categories: { [key in T]: FilterCategoryType };
   applyFiltersButton?: JSX.Element;
+  onChange?: (newFilters: Partial<AppliedFiltersType<T>>) => void;
 };
 
 type OnFilterValueChange<T> = {
@@ -28,11 +34,10 @@ type OnFilterValueChange<T> = {
 export const FiltersContainer = <T extends string>({
   categories,
   applyFiltersButton,
+  onChange,
 }: FiltersContainerProps<T>) => {
   const { temporarilyAppliedFilters, setTemporarilyAppliedFilters } =
     useContext(FilterLayoutContext);
-
-  console.log("temporarilyAppliedFilters", temporarilyAppliedFilters);
 
   const onFilterValueChange = ({
     filterId,
@@ -90,7 +95,10 @@ export const FiltersContainer = <T extends string>({
 
     onChangePerCategoryMap[category]();
     setTemporarilyAppliedFilters(newTempAppliedFilters);
-    console.log("up");
+
+    if (onChange) {
+      onChange(newTempAppliedFilters);
+    }
   };
 
   const isLastItem = (index: number) =>
@@ -98,22 +106,37 @@ export const FiltersContainer = <T extends string>({
 
   return (
     <>
-      {Object.keys(categories).map((filterId, i) => (
-        <div key={filterId}>
-          <FilterCategoryRenderer
-            category={categories[filterId as T]}
-            onChange={({ optionId, value }) =>
-              onFilterValueChange({
-                filterId: filterId as T,
-                optionId,
-                value,
-              })
-            }
-            appliedFilters={temporarilyAppliedFilters[filterId as T]}
-          />
-          {!isLastItem(i) && <Separator />}
-        </div>
-      ))}
+      <Accordion
+        type="multiple"
+        className="w-full"
+        defaultValue={Object.keys(categories)}
+      >
+        {Object.keys(categories).map((filterId, i) => (
+          <AccordionItem value={filterId} key={filterId}>
+            <AccordionTrigger>
+              <div className="p-4">
+                <div className="text-md lg:text-lg font-semibold text-left">
+                  {categories[filterId as T].title}
+                </div>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <FilterCategoryRenderer
+                category={categories[filterId as T]}
+                onChange={({ optionId, value }) =>
+                  onFilterValueChange({
+                    filterId: filterId as T,
+                    optionId,
+                    value,
+                  })
+                }
+                appliedFilters={temporarilyAppliedFilters[filterId as T]}
+              />
+              {/* {!isLastItem(i) && <Separator />} */}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
       {applyFiltersButton}
     </>
   );

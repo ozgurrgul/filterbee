@@ -26,7 +26,7 @@ export const FilterCategoryMultiSelect: MultiSelectProps = ({
     }
 
     return category.options.filter((option) =>
-      option.title.toLowerCase().includes(filterText.toLowerCase())
+      option.title?.toLowerCase().includes(filterText.toLowerCase())
     );
   };
 
@@ -49,6 +49,20 @@ export const FilterCategoryMultiSelect: MultiSelectProps = ({
       >
         {getFilteredOptions().map(({ optionId, title }) => {
           const optionIdString = `${category.title}-${optionId}`;
+          const isOptionChecked = isChecked(optionId);
+
+          if (category.renderItem) {
+            return (
+              <div
+                key={optionIdString}
+                className="flex items-center space-x-2 mb-4"
+                onClick={() => onChange({ optionId, value: !isOptionChecked })}
+              >
+                {category.renderItem(optionId, isOptionChecked)}
+              </div>
+            );
+          }
+
           return (
             <div
               key={optionIdString}
@@ -56,7 +70,7 @@ export const FilterCategoryMultiSelect: MultiSelectProps = ({
             >
               <Checkbox
                 id={optionIdString}
-                checked={isChecked(optionId)}
+                checked={isOptionChecked}
                 onCheckedChange={(checked: boolean) =>
                   onChange({ optionId, value: checked })
                 }

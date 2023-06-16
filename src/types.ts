@@ -1,7 +1,13 @@
 import { HTMLInputTypeAttribute } from "react";
 
-export type FilterTypes = "radio" | "multi-select" | "range" | "input";
 export type FilterOptionIdType = string;
+
+export type FilterCategoryOptionType = {
+  optionId: FilterOptionIdType;
+  title?: string;
+};
+
+export type FilterTypes = "radio" | "multi-select" | "range" | "input";
 
 type BaseFilterCategoryType = {
   title: string;
@@ -17,8 +23,12 @@ export type MultiSelectFilterCategoryType = BaseFilterCategoryType & {
   options: FilterCategoryOptionType[];
   ui?: {
     filterable?: boolean;
-    columns?: 1 | 2 | 3;
+    columns?: number;
   };
+  renderItem?: (
+    optionId: FilterOptionIdType,
+    isChecked: boolean
+  ) => React.ReactNode;
 };
 
 export type RangeFilterCategoryType = BaseFilterCategoryType & {
@@ -47,11 +57,6 @@ export type FilterCategoryType =
   | RadioFilterCategoryType
   | RangeFilterCategoryType
   | InputFilterCategoryType;
-
-export type FilterCategoryOptionType = {
-  optionId: FilterOptionIdType;
-  title: string;
-};
 
 export type SingleAppliedFilterIdValue = string | boolean | undefined;
 export type MultipleAppliedFilterIdValue =
