@@ -37,12 +37,12 @@ export function getFilteredEntities<TEntity, FFilterType extends string>({
     }
   }
 
-  return entities.filter((entity) => {
-    if (filterMap.size === 0) {
-      // If no filters are provided, return all entities.
-      return true;
-    }
+  if (filterMap.size === 0) {
+    // If no filters are provided, return all entities.
+    return entities;
+  }
 
+  return entities.filter((entity) => {
     return Array.from(filterMap.entries()).every(
       ([entityKey, filterValues]) => {
         if (!filterValues) {

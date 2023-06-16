@@ -56,11 +56,15 @@ const Template: Story = (args) => {
   });
 
   const [products, setProducts] = useState<MyProduct[]>([]);
+  const [productsLoading, setProductsLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://dummyjson.com/products")
       .then((res) => res.json())
-      .then((json) => setProducts(json.products));
+      .then((json) => {
+        setProducts(json.products);
+        setProductsLoading(false);
+      });
   }, []);
 
   const uniqProductCategories = getUniqValuesForFilter(products, "category");
@@ -83,7 +87,7 @@ const Template: Story = (args) => {
       title: "Categories",
       ui: {
         filterable: true,
-        loading: true,
+        loading: productsLoading,
       },
     },
     "product-brand": {
@@ -95,6 +99,7 @@ const Template: Story = (args) => {
       title: "Brand",
       ui: {
         filterable: true,
+        loading: productsLoading,
         showAll: {
           showAlltext: "Show more",
           hideText: "Hide",
@@ -113,20 +118,27 @@ const Template: Story = (args) => {
         },
       },
       title: "Price",
+      ui: {
+        loading: productsLoading,
+      },
     },
     "product-id-test": {
       type: "radio",
       options: [
-        { optionId: "1", title: "1" },
-        { optionId: "2", title: "2" },
+        { optionId: "1", title: "Iphone 9 filter only" },
+        { optionId: "2", title: "iPhone X filter only" },
       ],
-      title: "Brand",
+      title: "Singular selection",
+      ui: {
+        loading: productsLoading,
+      },
     },
     "product-rating": {
       type: "rating",
       title: "Rating",
       ui: {
-        amountOfStars: 5,
+        amountOfStars: 4,
+        loading: productsLoading,
       },
     },
   };

@@ -18,6 +18,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./components/Accordion";
+import { LoaderIcon } from "lucide-react";
 
 type FiltersContainerProps<T extends string> = {
   categories: { [key in T]: FilterCategoryType };
@@ -114,30 +115,39 @@ export const FiltersContainer = <T extends string>({
         className="w-full"
         defaultValue={Object.keys(categories)}
       >
-        {Object.keys(categories).map((filterId, i) => (
-          <AccordionItem value={filterId} key={filterId}>
-            <AccordionTrigger>
-              <div className="p-4 pb-0 pt-0">
-                <div className="text-md lg:text-lg font-semibold text-left">
-                  {categories[filterId as T].title}
+        {Object.keys(categories).map((filterId, i) => {
+          const category = categories[filterId as T];
+          return (
+            <AccordionItem value={filterId} key={filterId}>
+              <AccordionTrigger>
+                <div className="p-4 pb-0 pt-0">
+                  <div className="text-md lg:text-lg font-semibold text-left">
+                    {category.title}
+                  </div>
                 </div>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="pt-1">
-              <FilterCategoryRenderer
-                category={categories[filterId as T]}
-                onChange={({ optionId, value }) =>
-                  onFilterValueChange({
-                    filterId: filterId as T,
-                    optionId,
-                    value,
-                  })
-                }
-                appliedFilters={temporarilyAppliedFilters[filterId as T]}
-              />
-            </AccordionContent>
-          </AccordionItem>
-        ))}
+              </AccordionTrigger>
+              <AccordionContent className={"pt-1"}>
+                {category.ui?.loading ? (
+                  <div className="w-full h-16 flex justify-center items-center">
+                    <LoaderIcon className="animate-spin" />
+                  </div>
+                ) : (
+                  <FilterCategoryRenderer
+                    category={category}
+                    onChange={({ optionId, value }) =>
+                      onFilterValueChange({
+                        filterId: filterId as T,
+                        optionId,
+                        value,
+                      })
+                    }
+                    appliedFilters={temporarilyAppliedFilters[filterId as T]}
+                  />
+                )}
+              </AccordionContent>
+            </AccordionItem>
+          );
+        })}
       </Accordion>
       {applyFiltersButton}
     </div>
