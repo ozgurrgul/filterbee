@@ -98,7 +98,6 @@ export function getFilteredEntities<TEntity, FFilterType extends string>({
           const rating = filterValues as SingleAppliedFilterIdValue;
           if (rating) {
             const _value = Number(propValue);
-            console.log("_value", _value, rating);
             if (_value >= Number(rating)) {
               return true;
             }
