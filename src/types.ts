@@ -4,7 +4,7 @@ export type FilterOptionIdType = string;
 
 export type FilterCategoryOptionType = {
   optionId: FilterOptionIdType;
-  title: string;
+  title?: string;
 };
 
 export type FilterTypes =

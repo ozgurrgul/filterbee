@@ -52,7 +52,7 @@ const Template: Story = (args) => {
   const [appliedFilters, setAppliedFilters] = useState<
     Partial<AppliedFiltersType<MyProductFilters>>
   >({
-    "product-rating": 4,
+    "product-brand": ["Apple", "Samsung", "Huawei", "Golden"],
   });
 
   const [products, setProducts] = useState<MyProduct[]>([]);

@@ -7,23 +7,23 @@ export const deskBrandFilter: FilterCategoryType = {
   options: [
     {
       title: "Vasagle",
-      optionId: "Vasagle",
+      optionId: "vasagle",
     },
     {
       title: "Flash Furniture",
-      optionId: "Flash Furniture",
+      optionId: "flash_furniture",
     },
     {
       title: "Costway",
-      optionId: "Costway",
+      optionId: "costway",
     },
     {
       title: "Ikea",
-      optionId: "Ikea",
+      optionId: "ikea",
     },
     {
       title: "S-tables",
-      optionId: "S-tables",
+      optionId: "s_tables",
     },
   ],
 };
@@ -46,50 +46,51 @@ export const deskStyleFilter: FilterCategoryType = {
   type: "multi-select",
   ui: {
     showAll: {
-      text: "Show more",
+      showAlltext: "Show more",
+      hideText: "Hide",
       threshold: 3,
     },
   },
   options: [
     {
       title: "Country Rustic",
-      optionId: "Country Rustic",
+      optionId: "country_rustic",
     },
     {
       title: "Industrial",
-      optionId: "Industrial",
+      optionId: "industrial",
     },
     {
       title: "Mid-Century Modern",
-      optionId: "Mid-Century Modern",
+      optionId: "Mid-Century_modern",
     },
     {
       title: "Baroque",
-      optionId: "Baroque",
+      optionId: "baroque",
     },
     {
       title: "Retro",
-      optionId: "Retro",
+      optionId: "retro",
     },
     {
       title: "Minimalist",
-      optionId: "Minimalist",
+      optionId: "minimalist",
     },
     {
       title: "Hollywood legacy",
-      optionId: "Hollywood legacy",
+      optionId: "hollywood_legacy",
     },
     {
       title: "Lodge",
-      optionId: "Lodge",
+      optionId: "lodge",
     },
     {
       title: "Shaker",
-      optionId: "Shaker",
+      optionId: "shaker",
     },
     {
       title: "Victorian",
-      optionId: "Victorian",
+      optionId: "victorian",
     },
   ],
 };
