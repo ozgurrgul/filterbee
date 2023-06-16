@@ -16,7 +16,7 @@ import { getUniqValuesForFilter } from "../utils/filterUtils";
 import {
   FilterCategoryToEntityPropertMap,
   getFilteredEntities,
-} from "../utils/EntityFilterHelper";
+} from "../utils/getFilteredEntities";
 
 const meta: Meta = {
   title: "FilterLayout/Basic",
