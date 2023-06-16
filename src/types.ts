@@ -7,7 +7,12 @@ export type FilterCategoryOptionType = {
   title: string;
 };
 
-export type FilterTypes = "radio" | "multi-select" | "range" | "input";
+export type FilterTypes =
+  | "radio"
+  | "multi-select"
+  | "range"
+  | "input"
+  | "rating";
 
 type BaseFilterCategoryType = {
   title: string;
@@ -16,12 +21,16 @@ type BaseFilterCategoryType = {
 export type RadioFilterCategoryType = BaseFilterCategoryType & {
   type: "radio";
   options: FilterCategoryOptionType[];
+  ui?: {
+    loading?: boolean;
+  };
 };
 
 export type MultiSelectFilterCategoryType = BaseFilterCategoryType & {
   type: "multi-select";
   options: FilterCategoryOptionType[];
   ui?: {
+    loading?: boolean;
     filterable?: boolean;
     columns?: number;
     showAll?: {
@@ -46,14 +55,25 @@ export type RangeFilterCategoryType = BaseFilterCategoryType & {
       title: string;
     };
   };
+  ui?: {
+    loading?: boolean;
+  };
 };
 
 export type InputFilterCategoryType = BaseFilterCategoryType & {
   type: "input";
-  // options: FilterCategoryOptionType[];
   ui?: {
+    loading?: boolean;
     label: string;
     inputType: HTMLInputTypeAttribute;
+  };
+};
+
+export type RatingFilterCategoryType = BaseFilterCategoryType & {
+  type: "rating";
+  ui: {
+    loading?: boolean;
+    amountOfStars: number;
   };
 };
 
@@ -61,9 +81,10 @@ export type FilterCategoryType =
   | MultiSelectFilterCategoryType
   | RadioFilterCategoryType
   | RangeFilterCategoryType
-  | InputFilterCategoryType;
+  | InputFilterCategoryType
+  | RatingFilterCategoryType;
 
-export type SingleAppliedFilterIdValue = string | boolean | undefined;
+export type SingleAppliedFilterIdValue = string | boolean | number | undefined;
 export type MultipleAppliedFilterIdValue =
   | SingleAppliedFilterIdValue[]
   | undefined;

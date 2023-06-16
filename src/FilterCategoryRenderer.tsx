@@ -2,6 +2,7 @@ import { FilterCategoryInput } from "./FilterCategoryInput";
 import { FilterCategoryMultiSelect } from "./FilterCategoryMultiSelect";
 import { FilterCategoryRadio } from "./FilterCategoryRadio";
 import { FilterCategoryRange } from "./FilterCategoryRange";
+import { FilterCategoryRating } from "./FilterCategoryRating";
 import {
   SingleAppliedFilterIdValue,
   FilterCategoryType,
@@ -14,6 +15,7 @@ import {
   RangeAppliedFilterIdValue,
   FilterValue,
   InputFilterCategoryType,
+  RatingFilterCategoryType,
 } from "./types";
 
 export type FilterCategoryRendererProps = {
@@ -59,18 +61,27 @@ export type InputProps = React.FC<
   >
 >;
 
+export type RatingProps = React.FC<
+  FilterCategoryComponentRendererProps<
+    RatingFilterCategoryType,
+    SingleAppliedFilterIdValue
+  >
+>;
+
 const CATEGORY_RENDERER_MAP: {
   [key in FilterTypes]:
     | RadioProps
     | MultiSelectProps
     | RangeProps
     | InputProps
+    | RatingProps
     | undefined;
 } = {
   radio: FilterCategoryRadio,
   "multi-select": FilterCategoryMultiSelect,
   range: FilterCategoryRange,
   input: FilterCategoryInput,
+  rating: FilterCategoryRating,
 };
 
 export const FilterCategoryRenderer: React.FC<FilterCategoryRendererProps> = ({

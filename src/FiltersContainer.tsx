@@ -91,6 +91,12 @@ export const FiltersContainer = <T extends string>({
           [filterId]: value,
         };
       },
+      rating: () => {
+        newTempAppliedFilters = {
+          ...temporarilyAppliedFilters,
+          [filterId]: value,
+        };
+      },
     };
 
     onChangePerCategoryMap[category]();

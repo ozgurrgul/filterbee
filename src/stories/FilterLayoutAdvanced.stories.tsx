@@ -17,6 +17,7 @@ import {
   FilterCategoryToEntityPropertMap,
   getFilteredEntities,
 } from "../utils/getFilteredEntities";
+import { Stars } from "../components/Stars";
 
 const meta: Meta = {
   title: "FilterLayout/Basic",
@@ -44,12 +45,15 @@ type MyProductFilters =
   | "product-category"
   | "product-brand"
   | "product-price"
+  | "product-rating"
   | "product-id-test";
 
 const Template: Story = (args) => {
   const [appliedFilters, setAppliedFilters] = useState<
     Partial<AppliedFiltersType<MyProductFilters>>
-  >({});
+  >({
+    "product-rating": 4,
+  });
 
   const [products, setProducts] = useState<MyProduct[]>([]);
 
@@ -79,6 +83,7 @@ const Template: Story = (args) => {
       title: "Categories",
       ui: {
         filterable: true,
+        loading: true,
       },
     },
     "product-brand": {
@@ -117,6 +122,13 @@ const Template: Story = (args) => {
       ],
       title: "Brand",
     },
+    "product-rating": {
+      type: "rating",
+      title: "Rating",
+      ui: {
+        amountOfStars: 5,
+      },
+    },
   };
 
   const filterCategoryToEntityPropertMap: FilterCategoryToEntityPropertMap<
@@ -127,6 +139,7 @@ const Template: Story = (args) => {
     "product-brand": "brand",
     "product-price": "price",
     "product-id-test": "id",
+    "product-rating": "rating",
   };
 
   const filteredEntities = getFilteredEntities<MyProduct, MyProductFilters>({
@@ -168,6 +181,9 @@ const ProductsRenderer: React.FC<{ products: MyProduct[] }> = ({
               className="w-full h-48 rounded-md overflow-hidden shadow-lg"
             />
             <div className="text-slate-500 mt-4">{product.description}</div>
+            <div className="flex">
+              <Stars amountOfStars={5} type="single" />
+            </div>
           </CardContent>
           <CardFooter>
             <span>${product.price}</span>
