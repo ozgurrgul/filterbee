@@ -1,5 +1,5 @@
 import React from "react";
-import { StarIcon, StarHalfIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
 
 type StarIconProps = {
   fill?: string;

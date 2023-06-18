@@ -17,7 +17,14 @@ type FilterLayoutProps<T extends string> = {
   onChange?: (newFilters: Partial<AppliedFiltersType<T>>) => void;
   children: any;
   header?: {
-    mobile?: JSX.Element;
+    mobile?: any;
+  };
+  i18n?: {
+    buttons?: {
+      apply?: any;
+      cancel?: any;
+      filters?: any;
+    };
   };
 };
 
@@ -26,6 +33,7 @@ export const FilterLayout = <T extends string>({
   onChange,
   children,
   header,
+  i18n,
 }: FilterLayoutProps<T>) => {
   const { temporarilyAppliedFilters } = useContext(FilterLayoutContext);
   const [isShowSheet, setShowSheet] = React.useState(false);
@@ -46,7 +54,8 @@ export const FilterLayout = <T extends string>({
         <div className="p-4 bg-white border-b space-x-2 flex lg:hidden flex-row items-center">
           <div className="w-full flex flex-row flex-wrap">{header?.mobile}</div>
           <Button onClick={() => setShowSheet(true)} size="sm">
-            Filters <ChevronDown size={18} className="ml-1" />
+            {i18n?.buttons?.filters || "Filters"}{" "}
+            <ChevronDown size={18} className="ml-1" />
           </Button>
         </div>
 
@@ -55,6 +64,8 @@ export const FilterLayout = <T extends string>({
             filtersContainer={<FiltersContainer<T> categories={categories} />}
             applyFiltersButton={
               <ApplyFiltersButtonMobile
+                applyText={i18n?.buttons?.apply}
+                cancelText={i18n?.buttons?.cancel}
                 onApplylick={() => {
                   if (onChange) {
                     onChange(temporarilyAppliedFilters);
@@ -75,6 +86,7 @@ export const FilterLayout = <T extends string>({
               categories={categories}
               applyFiltersButton={
                 <ApplyFiltersButtonDesktop
+                  applyText={i18n?.buttons?.apply}
                   onApplylick={() => {
                     if (onChange) {
                       onChange(temporarilyAppliedFilters);

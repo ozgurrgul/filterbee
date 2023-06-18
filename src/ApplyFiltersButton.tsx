@@ -2,23 +2,28 @@ import React from "react";
 import { Button } from "./components/Button";
 
 type ApplyFiltersButtonProps = {
+  applyText?: any;
+  cancelText?: any;
   onApplylick: () => void;
   onCancelClick?: () => void;
 };
 
 export const ApplyFiltersButtonDesktop: React.FC<ApplyFiltersButtonProps> = ({
+  applyText,
   onApplylick,
 }) => {
   return (
     <div className="absolute bottom-0 left-0 right-0 border-t p-4 flex align-items justify-center bg-white">
       <Button className="w-full" onClick={onApplylick}>
-        Apply filters
+        {applyText || "Apply filters"}
       </Button>
     </div>
   );
 };
 
 export const ApplyFiltersButtonMobile: React.FC<ApplyFiltersButtonProps> = ({
+  applyText,
+  cancelText,
   onApplylick,
   onCancelClick,
 }) => {
@@ -30,10 +35,10 @@ export const ApplyFiltersButtonMobile: React.FC<ApplyFiltersButtonProps> = ({
       }}
     >
       <Button className="w-full" onClick={onCancelClick} variant="secondary">
-        Cancel
+        {cancelText || "Cancel"}
       </Button>
       <Button className="w-full" onClick={onApplylick}>
-        Apply filters
+        {applyText || "Apply filters"}
       </Button>
     </div>
   );
