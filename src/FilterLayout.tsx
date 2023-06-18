@@ -10,7 +10,6 @@ import React from "react";
 import { FilterLayoutMobile } from "./FilterLayoutMobile";
 import { ChevronDown } from "lucide-react";
 import { Button } from "./components/primitives/Button";
-import { cn } from "./utils/cn";
 
 type FilterLayoutProps<T extends string> = {
   categories: FilterCategoriesType<T>;

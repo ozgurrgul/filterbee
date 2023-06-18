@@ -1,11 +1,11 @@
-import { Stars } from "./Stars";
+import { Stars } from "./components";
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardContent,
   CardFooter,
-} from "./primitives/Card";
+  CardHeader,
+  CardTitle,
+} from "./components/primitives/Card";
 
 export type SimpleProduct = {
   id?: string | number;

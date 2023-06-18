@@ -8,3 +8,8 @@ export {
   getFilteredEntities,
   FilterCategoryToEntityPropertMap,
 } from "./utils/getFilteredEntities";
+export {
+  SimpleProductLayout,
+  SimpleProductLayoutProps,
+} from "./SimpleProductLayout";
+export { SimpleProductCard, SimpleProductCardProps } from "./SimpleProductCard";

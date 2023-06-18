@@ -10,7 +10,7 @@ import {
   FilterCategoryToEntityPropertMap,
   getFilteredEntities,
 } from "../utils/getFilteredEntities";
-import { SimpleProductLayout } from "../components/SimpleProductLayout";
+import { SimpleProductLayout } from "../SimpleProductLayout";
 
 const meta: Meta = {
   title: "FilterLayout/Basic",
