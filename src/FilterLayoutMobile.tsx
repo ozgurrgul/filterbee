@@ -3,7 +3,7 @@ import {
   SheetFooter,
   SheetClose,
   Sheet,
-} from "./components/Sheet";
+} from "./components/primitives/Sheet";
 
 type FilterLayoutMobileProps = {
   filtersContainer: JSX.Element;

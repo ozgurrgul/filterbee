@@ -5,19 +5,12 @@ import "../../dist/style.css";
 import { AppliedFiltersType, FilterCategoriesType } from "../types";
 import React from "react";
 import { FilterLayoutContextProvider } from "../FilterLayoutContext";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-  CardTitle,
-} from "../components/Card";
 import { getUniqValuesForFilter } from "../utils/filterUtils";
 import {
   FilterCategoryToEntityPropertMap,
   getFilteredEntities,
 } from "../utils/getFilteredEntities";
-import { Stars } from "../components/Stars";
+import { SimpleProductLayout } from "../components/SimpleProductLayout";
 
 const meta: Meta = {
   title: "FilterLayout/Basic",
@@ -170,39 +163,19 @@ const Template: Story = (args) => {
       >
         <div className="p-6">
           <pre>{JSON.stringify(appliedFilters, null, 4)}</pre>
-          <ProductsRenderer products={filteredEntities} />
+          <SimpleProductLayout
+            products={filteredEntities.map((p) => ({
+              id: p.id,
+              title: p.title,
+              description: p.description,
+              image: p.thumbnail,
+              price: p.price,
+              rating: p.rating,
+            }))}
+          />
         </div>
       </FilterLayout>
     </FilterLayoutContextProvider>
-  );
-};
-
-const ProductsRenderer: React.FC<{ products: MyProduct[] }> = ({
-  products,
-}) => {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
-      {products.map((product) => (
-        <Card key={product.id} className="flex flex-col">
-          <CardHeader>
-            <CardTitle>{product.title}</CardTitle>
-          </CardHeader>
-          <CardContent className="flex-1">
-            <img
-              src={product.thumbnail}
-              className="w-full h-48 rounded-md overflow-hidden shadow-lg"
-            />
-            <div className="text-slate-500 mt-4">{product.description}</div>
-            <div className="flex">
-              <Stars amountOfStars={5} type="single" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <span>${product.price}</span>
-          </CardFooter>
-        </Card>
-      ))}
-    </div>
   );
 };
 

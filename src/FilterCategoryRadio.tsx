@@ -1,7 +1,7 @@
 import React from "react";
 import { RadioProps } from "./FilterCategoryRenderer";
-import { RadioGroup, RadioGroupItem } from "./components/RadioGroup";
-import { Label } from "./components/Label";
+import { RadioGroup, RadioGroupItem } from "./components/primitives/RadioGroup";
+import { Label } from "./components/primitives/Label";
 import { SingleAppliedFilterIdValue } from "./types";
 
 export const FilterCategoryRadio: RadioProps = ({

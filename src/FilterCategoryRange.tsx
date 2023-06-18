@@ -1,6 +1,6 @@
 import {  useState } from "react";
 import { RangeProps } from "./FilterCategoryRenderer";
-import { Input } from "./components/Input";
+import { Input } from "./components/primitives/Input";
 
 // TODO: debounce
 export const FilterCategoryRange: RangeProps = ({

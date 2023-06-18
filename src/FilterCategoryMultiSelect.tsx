@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MultiSelectProps } from "./FilterCategoryRenderer";
-import { Input } from "./components/Input";
-import { Checkbox } from "./components/Checkbox";
+import { Input } from "./components/primitives/Input";
+import { Checkbox } from "./components/primitives/Checkbox";
 import { FilterCategoryOptionType } from "./types";
 
 export const FilterCategoryMultiSelect: MultiSelectProps = ({

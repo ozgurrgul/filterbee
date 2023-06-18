@@ -2,7 +2,7 @@ import { useState } from "react";
 import { InputProps } from "./FilterCategoryRenderer";
 import { Label } from "@radix-ui/react-label";
 import React from "react";
-import { Input } from "./components/Input";
+import { Input } from "./components/primitives/Input";
 
 // TODO: debounce
 export const FilterCategoryInput: InputProps = ({

@@ -17,7 +17,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./components/Accordion";
+} from "./components/primitives/Accordion";
 import { LoaderIcon } from "lucide-react";
 
 type FiltersContainerProps<T extends string> = {
